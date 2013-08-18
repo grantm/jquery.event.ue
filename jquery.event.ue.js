@@ -508,6 +508,7 @@
         event_ue = $.Event('uheldmove');
         $.extend( event_ue, motion_map );
         $(motion_map.elem_bound).trigger(event_ue);
+        event_src.preventDefault();
       }
     }
     else if ( motionDragId === motion_id ) {
@@ -515,6 +516,7 @@
         event_ue = $.Event('udragmove');
         $.extend( event_ue, motion_map );
         $(motion_map.elem_bound).trigger(event_ue);
+        event_src.preventDefault();
       }
     }
 
@@ -527,6 +529,7 @@
       event_ue = $.Event('udragstart');
       $.extend( event_ue, motion_map );
       $(motion_map.elem_bound).trigger(event_ue);
+      event_src.preventDefault();
 
       if ( motion_map.idto_tapheld ) {
         clearTimeout(motion_map.idto_tapheld);
@@ -594,6 +597,7 @@
         event_ue = $.Event('udragend');
         $.extend( event_ue, motion_map );
         $(motion_map.elem_bound).trigger(event_ue);
+        event_src.preventDefault();
       }
       motionDragId = undefined;
     }
@@ -663,7 +667,6 @@
       case 'touchstart' : handler_fn = fnMotionStart; break;
       case 'touchmove'  :
         handler_fn = fnMotionMove;
-        event.preventDefault();
       break;
       case 'touchend'   : handler_fn = fnMotionEnd;   break;
       default : handler_fn = null;
@@ -711,7 +714,7 @@
     }
 
     switch ( event.type ) {
-      case 'mousedown' : handler_fn = fnMotionStart; break;
+      case 'mousedown' : handler_fn = fnMotionStart; event.preventDefault(); break;
       case 'mouseup'   : handler_fn = fnMotionEnd;   break;
       case 'mousemove' :
         handler_fn = fnMotionMove;
