@@ -723,13 +723,18 @@
     }
 
     switch ( event.type ) {
-      case 'mousedown' : handler_fn = fnMotionStart; event.preventDefault(); break;
-      case 'mouseup'   : handler_fn = fnMotionEnd;   break;
+      case 'mousedown' :
+        handler_fn = fnMotionStart;
+        event.preventDefault();
+        break;
+      case 'mouseup'   :
+        handler_fn = fnMotionEnd;
+        break;
       case 'mousemove' :
         handler_fn = fnMotionMove;
-        event.preventDefault();
-      break;
-      default          : handler_fn = null;
+        break;
+      default:
+        handler_fn = null;
     }
 
     if ( ! handler_fn ) { return; }
